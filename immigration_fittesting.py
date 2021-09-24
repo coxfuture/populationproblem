@@ -56,21 +56,17 @@ for l in data.values():
 #reshape concatenated array into the format i need
 y_lists = y_lists.reshape(20,11).astype(float)
 average_y = np.average(y_lists,axis=0)
-print(average_y)
+#print(average_y)
 
 #exponential regression
 A_vals = []
 B_vals = []
 #curve fitting using ln
-
 x_data = np.array(border)
 y_data = np.log(list(average_y.astype(float)))
-print("x_data=",x_data,"y_data=",y_data)
-#b, A_log = np.polyfit(x_data, y_data, 1)
 b, A_log, _r, _p, _se = scipy.stats.linregress(x_data, y_data)
 a = np.exp(A_log)
-print("alog=",A_log,"a=",a,"b=",b)
-
+#b, A_log = np.polyfit(x_data, y_data, 1)
 
 #print("a and b values :",A_vals,B_vals)
 #get average a and b values
@@ -83,8 +79,8 @@ x_1 = np.array(border)
 y_1 = a * math.e **(b * x_1)
 plt.plot(x_1, y_1, color="red")
 x_2 = np.array(border)
-y_2 = 1000 * math.e **(-0.5 * x_2)
-plt.plot(x_2, y_2, color="blue")
+y_2 = 1000 * math.e **(-0.69 * x_2)
+plt.plot(x_2, y_2, color="blue",label="expected")
 #label=r'$y=round(eqA,2)*e^(round(eqB,3)*x)$'
 
 plt.legend(data.keys())
